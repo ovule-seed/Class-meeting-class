@@ -9,34 +9,41 @@ root.configure(bg='#FFFFFF')
 
 n = 0 
 
-def atmosphere(s):
+def atmosphere(s):    #滚动数字，氛围组
     if s == 'group':
         ending = 8
     else:
         ending = 44
+    #逐渐减缓滚动速度
     for i in range(20):
         final_label.config(text=rd.randint(1,ending))
         final_label.update()
         time.sleep(0.05)
+    for i in range(10):
+        final_label.config(text=rd.randint(1,ending))
+        final_label.update()
+        time.sleep(0.1)
+    for i in range(10):
+        final_label.config(text=rd.randint(1,ending))
+        final_label.update()
+        time.sleep(0.2)
 
 
-def rand(s):
+def rand(s): #“随机”抽取
     global n
     t = 0
+    atmosphere(s)
     if s == 'group':
-        if n == 0:
-            atmosphere(s)
-            final_label.config(text=1)
+        if n == 0:      #保证第一个被“抽”到的是第三组——为了能叫chy
+            final_label.config(text=3)
             n += 1
         else:
-            atmosphere(s)
             final_label.config(text=rd.randint(1, 8))
     else:
-        atmosphere(s)
-        final_label.config(text=rd.randint(1, 44))
+        final_label.config(text=rd.randint(1,44))
 
-            
 
+#初始化控件
 title_label = tk.Label(root, text='随机抽取', font=('微软雅黑', 20), bg='#FFFFFF')
 title_label.pack(pady=50)
 
